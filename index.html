@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergotraum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ergotraum</h1>
+        <label for="fr">FR (frequence respiratoire en FR/min):</label>
+        <input type="number" id="fr" placeholder="Entrez FR">
+        
+        <label for="vt">VT (volume courant en litre : exemple 0.45 pour Vt 450):</label>
+        <input type="number" id="vt" placeholder="Entrez VT">
+        
+        <label for="peep">PEEP (en cmH2O):</label>
+        <input type="number" id="peep" placeholder="Entrez PEEP">
+        
+        <label for="pcrete">Pcrete (en cmH2O):</label>
+        <input type="number" id="pcrete" placeholder="Entrez Pcrete">
+        
+        <label for="pplat">Pplat (en cmH2O):</label>
+        <input type="number" id="pplat" placeholder="Entrez Pplat">
+        
+        <button onclick="calculerEnergie()">Calculer</button>
+        
+        <div class="result" id="resultat">Resultat : </div>
+    </div>
+
+    <script>
+        function calculerEnergie() {
+            // Récupérer les valeurs entrées
+            let fr = parseFloat(document.getElementById('fr').value);
+            let vt = parseFloat(document.getElementById('vt').value);
+            let peep = parseFloat(document.getElementById('peep').value);
+            let pcrete = parseFloat(document.getElementById('pcrete').value);
+            let pplat = parseFloat(document.getElementById('pplat').value);
+
+            // Calcul de DP
+            let dp = pplat - peep;
+
+            // Calcul de l'énergie
+            let energie = 0.098 * fr * vt * (peep + (0.5 * dp) + (pcrete - pplat));
+
+            // Afficher le résultat
+            document.getElementById('resultat').textContent = "Résultat : " + energie.toFixed(2) + " joules/min";
+        }
+    </script>
+</body>
+</html>
