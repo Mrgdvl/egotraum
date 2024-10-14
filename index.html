@@ -81,7 +81,7 @@
 
     <script>
         function calculerEnergie() {
-            // Récupérer les valeurs entrées
+            // RÃ©cupÃ©rer les valeurs entrÃ©es
             let fr = parseFloat(document.getElementById('fr').value);
             let vt = parseFloat(document.getElementById('vt').value);
             let peep = parseFloat(document.getElementById('peep').value);
@@ -91,11 +91,11 @@
             // Calcul de DP
             let dp = pplat - peep;
 
-            // Calcul de l'énergie
+            // Calcul de l'Ã©nergie
             let energie = 0.098 * fr * vt * (peep + (0.5 * dp) + (pcrete - pplat));
 
-            // Afficher le résultat
-            document.getElementById('resultat').textContent = "Résultat : " + energie.toFixed(2) + " joules/min";
+            // Afficher le rÃ©sultat
+            document.getElementById('resultat').textContent = "Resultat : " + energie.toFixed(2) + " joules/min";
         }
     </script>
 </body>
